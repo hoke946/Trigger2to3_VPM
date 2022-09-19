@@ -7,8 +7,7 @@ VRC_TriggerのUIを次のような3つのUdonで表現して、実現します�
 
 ## ダウンロード
   
-[Releases](https://github.com/hoke946/Trigger2to3_vcc/releases)、  
-または、[こちら](https://hoke946.github.io/Trigger2to3_VPM/)のページから
+[Releasesページ](https://github.com/hoke946/Trigger2to3_vcc/releases)、または、[こちらのページ](https://hoke946.github.io/Trigger2to3_VPM/)から
 zipファイル、またはUnityPackageをダウンロードしてください。  
 zipファイルはVPM形式となっていて、VRChat Creator Companion からのインストールが便利です。
   
