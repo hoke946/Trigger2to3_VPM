@@ -434,7 +434,7 @@ MonoBehaviour:
       Data: 22|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Trigger2to3.T23_BroadcastBase, Assembly-CSharp
+      Data: Trigger2to3.T23_BroadcastBase, Trigger2to3.Runtime
     - Name: 
       Entry: 8
       Data: 
@@ -542,7 +542,7 @@ MonoBehaviour:
       Data: 28|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Trigger2to3.T23_PropertyBox, Assembly-CSharp
+      Data: Trigger2to3.T23_PropertyBox, Trigger2to3.Runtime
     - Name: 
       Entry: 8
       Data: 

@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_EDITOR && !COMPILER_UDONSHARP
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -303,3 +303,4 @@ namespace Trigger2to3
         }
     }
 }
+#endif

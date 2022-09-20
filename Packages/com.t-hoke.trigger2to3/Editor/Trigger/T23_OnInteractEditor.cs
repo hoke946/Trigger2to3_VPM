@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_EDITOR && !COMPILER_UDONSHARP
 using UdonSharp;
 using VRC.Udon;
 using UnityEditor;
@@ -27,3 +27,4 @@ namespace Trigger2to3
         }
     }
 }
+#endif

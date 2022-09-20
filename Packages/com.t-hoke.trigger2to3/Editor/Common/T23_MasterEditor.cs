@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_EDITOR && !COMPILER_UDONSHARP
 using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
@@ -229,3 +229,4 @@ namespace Trigger2to3
         }
     }
 }
+#endif

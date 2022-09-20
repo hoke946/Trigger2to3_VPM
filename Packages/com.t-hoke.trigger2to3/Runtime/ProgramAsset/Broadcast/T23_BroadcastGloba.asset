@@ -832,7 +832,7 @@ MonoBehaviour:
       Data: 45|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Trigger2to3.T23_CommonBuffer, Assembly-CSharp
+      Data: Trigger2to3.T23_CommonBuffer, Trigger2to3.Runtime
     - Name: 
       Entry: 8
       Data: 

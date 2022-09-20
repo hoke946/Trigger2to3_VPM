@@ -1,4 +1,4 @@
-﻿
+﻿#if UNITY_EDITOR && !COMPILER_UDONSHARP
 using VRC.SDKBase;
 using UnityEditor;
 
@@ -17,3 +17,4 @@ namespace Trigger2to3
         }
     }
 }
+#endif

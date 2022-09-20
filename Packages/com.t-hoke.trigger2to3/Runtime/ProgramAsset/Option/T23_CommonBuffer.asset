@@ -62,7 +62,7 @@ MonoBehaviour:
       Data: 3|System.RuntimeType, mscorlib
     - Name: 
       Entry: 1
-      Data: Trigger2to3.T23_BroadcastGlobal[], Assembly-CSharp
+      Data: Trigger2to3.T23_BroadcastGlobal[], Trigger2to3.Runtime
     - Name: 
       Entry: 8
       Data: 
