@@ -63,6 +63,7 @@ namespace Trigger2to3
                     {
                         T23_EditorUtility.AddCommonBuffer();
                     }
+                    EditorGUILayout.HelpBox("CommonBufferを設定してください。", MessageType.Warning);
                 }
                 EditorGUILayout.EndHorizontal();
                 if (EditorGUI.EndChangeCheck())

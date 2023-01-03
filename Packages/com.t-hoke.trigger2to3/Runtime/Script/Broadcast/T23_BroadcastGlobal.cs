@@ -22,41 +22,16 @@ namespace Trigger2to3
         public T23_CommonBuffer commonBuffer;
         public bool commonBufferSearched;
 
-        [UdonSynced(UdonSyncMode.None)]
-        private bool syncReady;
-
-        [UdonSynced(UdonSyncMode.None)]
-        private int bufferTimes;
-
         private bool synced = false;
         private bool synced2 = false;
         private int actionCount = 0;
-        private int buffering_count = 0;
         private int missing_count = 0;
-
-        [HideInInspector]
-        [UdonSynced(UdonSyncMode.None)]
-        public int seed;
 
         protected override void OnStart()
         {
             if (commonBuffer)
             {
                 commonBuffer.LinkBroadcast(this);
-            }
-            else
-            {
-                if (Networking.IsOwner(gameObject))
-                {
-                    bufferTimes = 0;
-                    seed = Random.Range(0, 1000000000);
-                    syncReady = true;
-                    RequestSerialization();
-                }
-                else
-                {
-                    SendCustomNetworkEvent(NetworkEventTarget.Owner, "RequestFirstSync" + groupID.ToString());
-                }
             }
         }
 
@@ -78,20 +53,6 @@ namespace Trigger2to3
         void Update()
         {
             if (synced) { synced2 = true; }
-
-            if (!synced && syncReady)
-            {
-                if (!commonBuffer)
-                {
-                    if (buffering_count < bufferTimes)
-                    {
-                        if (!UnconditionalFire()) { return; }
-                        buffering_count++;
-                        return;
-                    }
-                    SetSynced();
-                }
-            }
         }
 
         public void SetSynced()
@@ -272,28 +233,7 @@ namespace Trigger2to3
                 Networking.SetOwner(Networking.LocalPlayer, commonBuffer.gameObject);
                 commonBuffer.EntryBuffer(this, bufferType);
             }
-            else
-            {
-                if (bufferType == 1)
-                {
-                    if (bufferTimes == 0)
-                    {
-                        bufferTimes = 1;
-                        RequestSerialization();
-                    }
-                }
-                else if (bufferType == 2)
-                {
-                    bufferTimes++;
-                    RequestSerialization();
-                }
-            }
             Fire();
-        }
-
-        public bool IsSyncReady()
-        {
-            return syncReady;
         }
 
         public override int GetSeed()
@@ -304,7 +244,7 @@ namespace Trigger2to3
             }
             else
             {
-                return seed;
+                return actionCount;
             }
         }
     }
