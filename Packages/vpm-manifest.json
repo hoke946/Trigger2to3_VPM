@@ -8,22 +8,33 @@
     },
     "com.vrchat.udonsharp": {
       "version": "1.1.1"
+    },
+    "com.t-hoke.trigger2to3": {
+      "version": "2.1.1"
     }
   },
   "locked": {
     "com.vrchat.base": {
-      "version": "3.1.7"
+      "version": "3.1.13",
+      "dependencies": {}
     },
     "com.vrchat.worlds": {
-      "version": "3.1.7",
+      "version": "3.1.13",
       "dependencies": {
-        "com.vrchat.base": "3.1.x"
+        "com.vrchat.base": "3.1.13"
       }
     },
     "com.vrchat.udonsharp": {
-      "version": "1.1.1",
+      "version": "1.1.7",
       "dependencies": {
         "com.vrchat.worlds": "3.1.x"
+      }
+    },
+    "com.t-hoke.trigger2to3": {
+      "version": "2.1.1",
+      "dependencies": {
+        "com.vrchat.base": "3.1.x",
+        "com.vrchat.udonsharp": "1.1.x"
       }
     }
   }
