@@ -10,6 +10,7 @@ namespace Trigger2to3
         {
             DrawRecieversList();
             DrawToggleOperationField();
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("withoutNotify"));
         }
     }
 }

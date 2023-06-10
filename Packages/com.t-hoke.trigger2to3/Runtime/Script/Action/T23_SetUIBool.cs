@@ -18,6 +18,8 @@ namespace Trigger2to3
         public T23_PropertyBox propertyBox;
         public bool usePropertyBox;
 
+        public bool withoutNotify;
+
         protected override void OnAction()
         {
             if (usePropertyBox && propertyBox)
@@ -38,13 +40,14 @@ namespace Trigger2to3
             var uitoggle = target.GetComponent<Toggle>();
             if (uitoggle != null)
             {
-                if (toggle)
+                bool isOn = toggle ? !uitoggle.isOn : operation;
+                if (withoutNotify)
                 {
-                    uitoggle.isOn = !uitoggle.isOn;
+                    uitoggle.SetIsOnWithoutNotify(isOn);
                 }
                 else
                 {
-                    uitoggle.isOn = operation;
+                    uitoggle.isOn = isOn;
                 }
                 return;
             }

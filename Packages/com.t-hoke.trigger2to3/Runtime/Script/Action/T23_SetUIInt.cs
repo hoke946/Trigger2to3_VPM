@@ -15,6 +15,8 @@ namespace Trigger2to3
         public T23_PropertyBox propertyBox;
         public bool usePropertyBox;
 
+        public bool withoutNotify;
+
         protected override void OnAction()
         {
             if (usePropertyBox && propertyBox)
@@ -35,7 +37,14 @@ namespace Trigger2to3
             var dropdown = target.GetComponent<Dropdown>();
             if (dropdown != null)
             {
-                dropdown.value = operation;
+                if (withoutNotify)
+                {
+                    dropdown.SetValueWithoutNotify(operation);
+                }
+                else
+                {
+                    dropdown.value = operation;
+                }
                 return;
             }
         }

@@ -15,6 +15,8 @@ namespace Trigger2to3
         public T23_PropertyBox propertyBox;
         public bool usePropertyBox;
 
+        public bool withoutNotify;
+
         protected override void OnAction()
         {
             if (usePropertyBox && propertyBox)
@@ -35,14 +37,28 @@ namespace Trigger2to3
             var slider = target.GetComponent<Slider>();
             if (slider != null)
             {
-                slider.value = operation;
+                if (withoutNotify)
+                {
+                    slider.SetValueWithoutNotify(operation);
+                }
+                else
+                {
+                    slider.value = operation;
+                }
                 return;
             }
 
             var scrollbar = target.GetComponent<Scrollbar>();
             if (scrollbar != null)
             {
-                scrollbar.value = operation;
+                if (withoutNotify)
+                {
+                    scrollbar.SetValueWithoutNotify(operation);
+                }
+                else
+                {
+                    scrollbar.value = operation;
+                }
                 return;
             }
         }
