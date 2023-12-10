@@ -49,19 +49,27 @@ namespace Trigger2to3
         protected void DrawRecieversList(string fieldName = "recievers")
         {
             SerializedProperty recieverProp = serializedObject.FindProperty(fieldName);
-            if (recieverReorderableList == null)
+            if (Application.unityVersion.Substring(0, 4) == "2019")
             {
-                recieverReorderableList = new ReorderableList(serializedObject, recieverProp);
-                recieverReorderableList.draggable = true;
-                recieverReorderableList.displayAdd = true;
-                recieverReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, T23_EditorUtility.ToUnityFieldName(fieldName));
-                recieverReorderableList.drawElementCallback = (rect, index, isActive, isFocused) =>
+                if (recieverReorderableList == null)
                 {
-                    rect.height = EditorGUIUtility.singleLineHeight;
-                    EditorGUI.PropertyField(rect, recieverProp.GetArrayElementAtIndex(index), new GUIContent(""));
-                };
+                    recieverReorderableList = new ReorderableList(serializedObject, recieverProp);
+                    recieverReorderableList.draggable = true;
+                    recieverReorderableList.displayAdd = true;
+                    recieverReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, T23_EditorUtility.ToUnityFieldName(fieldName));
+                    recieverReorderableList.drawElementCallback = (rect, index, isActive, isFocused) =>
+                    {
+                        rect.height = EditorGUIUtility.singleLineHeight;
+                        EditorGUI.PropertyField(rect, recieverProp.GetArrayElementAtIndex(index), new GUIContent(""));
+                    };
+                }
+
+                recieverReorderableList.DoLayoutList();
             }
-            recieverReorderableList.DoLayoutList();
+            else
+            {
+                EditorGUILayout.PropertyField(recieverProp, new GUIContent(fieldName));
+            }
         }
 
         protected void DrawToggleOperationField()

@@ -61,9 +61,9 @@ namespace Trigger2to3
                     buttonStyle.stretchWidth = false;
                     if (GUILayout.Button("Add CommonBuffer", buttonStyle))
                     {
-                        T23_EditorUtility.AddCommonBuffer();
+                        var added = T23_EditorUtility.AddCommonBuffer();
+                        T23_EditorUtility.JoinAllBufferingBroadcasts(added);
                     }
-                    EditorGUILayout.HelpBox("CommonBufferを設定してください。", MessageType.Warning);
                 }
                 EditorGUILayout.EndHorizontal();
                 if (EditorGUI.EndChangeCheck())
@@ -72,14 +72,21 @@ namespace Trigger2to3
                     serializedObject.Update();
                     T23_EditorUtility.UpdateAllCommonBuffersRelate();
                 }
-                if (body.commonBuffer == null && !body.commonBufferSearched)
+                if (body.commonBuffer == null)
                 {
-                    body.commonBuffer = T23_EditorUtility.GetAutoJoinCommonBuffer(body);
-                    if (body.commonBuffer != null)
+                    if (body.commonBufferSearched)
                     {
-                        T23_EditorUtility.UpdateAllCommonBuffersRelate();
+                        EditorGUILayout.HelpBox("CommonBufferを設定してください。", MessageType.Warning);
                     }
-                    body.commonBufferSearched = true;
+                    else
+                    {
+                        body.commonBuffer = T23_EditorUtility.GetAutoJoinCommonBuffer(body);
+                        if (body.commonBuffer != null)
+                        {
+                            T23_EditorUtility.UpdateAllCommonBuffersRelate();
+                        }
+                        body.commonBufferSearched = true;
+                    }
                 }
             }
 
