@@ -152,6 +152,9 @@ namespace Trigger2to3
                     case "Velocity":
                         value_v3 = player.GetVelocity();
                         break;
+                    case "EyeHeight":
+                        value_f = player.GetAvatarEyeHeightAsMeters();
+                        break;
                     case "DisplayName":
                         value_s = player.displayName;
                         break;

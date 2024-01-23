@@ -44,6 +44,7 @@ namespace Trigger2to3
 
         private string[] PlayerSpot_b = { "IsUserInVR", "IsPlayerGrounded", "IsMaster", "IsInstanceOwner", "IsGameObjectOwner" };
         private string[] PlayerSpot_v3 = { "Position", "Rotation", "HeadPosition", "HeadRotation", "RightHandPosition", "RightHandRotation", "LeftHandPosition", "LeftHandRotation", "Velocity" };
+        private string[] PlayerSpot_f = { "EyeHeight" };
         private string[] PlayerSpot_s = { "DisplayName" };
 
         private string[] ObjectSpot_b = { "IsActive" };
@@ -140,7 +141,12 @@ namespace Trigger2to3
                     {
                         spotList.AddRange(PlayerSpot_b);
                     }
-                    else if (body.valueType == 2 || body.valueType == 3)
+                    else if (body.valueType == 2)
+                    {
+                        spotList.AddRange(PlayerSpot_v3);
+                        spotList.AddRange(PlayerSpot_f);
+                    }
+                    else if (body.valueType == 3)
                     {
                         spotList.AddRange(PlayerSpot_v3);
                     }
@@ -174,45 +180,52 @@ namespace Trigger2to3
 
                 if (body.trackType == 4)
                 {
+                    EditorGUI.BeginChangeCheck();
                     prop = serializedObject.FindProperty("targetObject");
                     EditorGUILayout.PropertyField(prop);
-                    if (body.targetObject)
+                    if (EditorGUI.EndChangeCheck())
                     {
-                        body.targetComponent = null;
-                        serializedObject.FindProperty("spot").stringValue = "";
-                        List<System.Type> UITypes = new List<System.Type>();
-                        if (body.valueType == 0)
+                        if (body.targetObject)
                         {
-                            UITypes.Add(typeof(Toggle));
-                        }
-                        if (body.valueType == 1)
-                        {
-                            UITypes.Add(typeof(Text));
-                            UITypes.Add(typeof(InputField));
-                            UITypes.Add(typeof(Dropdown));
-                        }
-                        if (body.valueType == 2)
-                        {
-                            UITypes.Add(typeof(Slider));
-                            UITypes.Add(typeof(Scrollbar));
-                            UITypes.Add(typeof(Text));
-                            UITypes.Add(typeof(InputField));
-                            UITypes.Add(typeof(Dropdown));
-                        }
-                        if (body.valueType == 4)
-                        {
-                            UITypes.Add(typeof(Text));
-                            UITypes.Add(typeof(InputField));
-                        }
-                        foreach (var type in UITypes)
-                        {
-                            body.targetComponent = body.targetObject.GetComponent(type);
-                            if (body.targetComponent != null)
+                            body.targetComponent = null;
+                            serializedObject.FindProperty("spot").stringValue = "";
+                            List<System.Type> UITypes = new List<System.Type>();
+                            if (body.valueType == 0)
                             {
-                                serializedObject.FindProperty("spot").stringValue = type.Name;
-                                break;
+                                UITypes.Add(typeof(Toggle));
+                            }
+                            if (body.valueType == 1)
+                            {
+                                UITypes.Add(typeof(Text));
+                                UITypes.Add(typeof(InputField));
+                                UITypes.Add(typeof(Dropdown));
+                            }
+                            if (body.valueType == 2)
+                            {
+                                UITypes.Add(typeof(Slider));
+                                UITypes.Add(typeof(Scrollbar));
+                                UITypes.Add(typeof(Text));
+                                UITypes.Add(typeof(InputField));
+                                UITypes.Add(typeof(Dropdown));
+                            }
+                            if (body.valueType == 4)
+                            {
+                                UITypes.Add(typeof(Text));
+                                UITypes.Add(typeof(InputField));
+                            }
+                            foreach (var type in UITypes)
+                            {
+                                body.targetComponent = body.targetObject.GetComponent(type);
+                                if (body.targetComponent != null)
+                                {
+                                    serializedObject.FindProperty("spot").stringValue = type.Name;
+                                    break;
+                                }
                             }
                         }
+                    }
+                    if (body.targetObject != null)
+                    {
                         if (body.targetComponent == null)
                         {
                             EditorGUILayout.HelpBox($"{(ValueType)body.valueType} で取得可能な UI コンポーネントがありません。", MessageType.Error);
@@ -281,6 +294,10 @@ namespace Trigger2to3
                         List<string> detailList = new List<string>(SpotDetail_v3_f);
                         var detailIndex = EditorGUILayout.Popup("Spot Detail", detailList.IndexOf(body.spotDetail), SpotDetail_v3_f);
                         serializedObject.FindProperty("spotDetail").stringValue = detailIndex >= 0 ? SpotDetail_v3_f[detailIndex] : "";
+                    }
+                    else
+                    {
+                        serializedObject.FindProperty("spotDetail").stringValue = "";
                     }
                 }
 
