@@ -1,7 +1,7 @@
 {
   "name": "com.t-hoke.trigger2to3",
   "displayName": "Trigger2to3",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "unity": "2019.4",
   "description": "An alternative to VRC_Trigger that can be used with VRChat SDK3",
   "url": "https://github.com/hoke946/Trigger2to3_VPM/",
@@ -11,8 +11,7 @@
     "name": "Hoke"
   },
   "gitDependencies": {},
-  "vpmDependencies": {
-  },
+  "vpmDependencies": {},
   "legacyFolders": {
     "Assets\\Trigger2to3": ""
   }

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditorInternal;
 using UdonSharp;
+using System.Collections.Generic;
 
 namespace Trigger2to3
 {
@@ -18,6 +19,8 @@ namespace Trigger2to3
         private UdonSharpProgramAsset addAction;
 
         T23_Master master;
+
+        private static T23_Master _copyTarget;
 
         void OnEnable()
         {
@@ -70,16 +73,6 @@ namespace Trigger2to3
             }
             broadcastReorderableList.DoLayoutList();
 
-            /*
-            EditorGUILayout.BeginHorizontal();
-            setBroadcast = (UdonSharpProgramAsset)EditorGUILayout.ObjectField("New Broadcast", setBroadcast, typeof(UdonSharpProgramAsset), false);
-            if (GUILayout.Button("Set"))
-            {
-                EditorApplication.delayCall += () => SetBroadcast();
-            }
-            EditorGUILayout.EndHorizontal();
-            */
-
             GUILayout.Space(10);
 
             SerializedProperty triggerProp = serializedObject.FindProperty("triggerTitles");
@@ -109,16 +102,6 @@ namespace Trigger2to3
                 triggerReorderableList.onChangedCallback = ChangeTrigger;
             }
             triggerReorderableList.DoLayoutList();
-
-            /*
-            EditorGUILayout.BeginHorizontal();
-            addTrigger = (UdonSharpProgramAsset)EditorGUILayout.ObjectField("New Trigger", addTrigger, typeof(UdonSharpProgramAsset), false);
-            if (GUILayout.Button("Add"))
-            {
-                AddTrigger();
-            }
-            EditorGUILayout.EndHorizontal();
-            */
 
             GUILayout.Space(10);
 
@@ -150,16 +133,6 @@ namespace Trigger2to3
             }
             actionReorderableList.DoLayoutList();
 
-            /*
-            EditorGUILayout.BeginHorizontal();
-            addAction = (UdonSharpProgramAsset)EditorGUILayout.ObjectField("New Action", addAction, typeof(UdonSharpProgramAsset), false);
-            if (GUILayout.Button("Add"))
-            {
-                AddAction();
-            }
-            EditorGUILayout.EndHorizontal();
-            */
-
             GUILayout.Space(10);
 
             EditorGUI.BeginChangeCheck();
@@ -177,6 +150,29 @@ namespace Trigger2to3
             {
                 EditorGUILayout.HelpBox("VRC_ObjectSync が存在するため、Synchronize Method は Continuous に設定されています。", MessageType.Info);
             }
+
+            EditorGUILayout.BeginHorizontal();
+            Color oldBackgroundColor = GUI.backgroundColor;
+            if (_copyTarget != null && _copyTarget == master) { GUI.backgroundColor = Color.green; }
+            if (GUILayout.Button("Set Copy Target"))
+            {
+                if (_copyTarget == master)
+                {
+                    _copyTarget = null;
+                }
+                else
+                {
+                    _copyTarget = master;
+                }
+            }
+            GUI.backgroundColor = oldBackgroundColor;
+            EditorGUI.BeginDisabledGroup(_copyTarget == null);
+            if (GUILayout.Button("Copy Modules"))
+            {
+                CopyModules();
+            }
+            EditorGUI.EndDisabledGroup();
+            EditorGUILayout.EndHorizontal();
 
             if (master.shouldMoveComponents)
             {
@@ -226,6 +222,51 @@ namespace Trigger2to3
         private void ChangeAction(ReorderableList list)
         {
             EditorApplication.delayCall += () => master.ChangeAction();
+        }
+
+        private void CopyModules()
+        {
+            if (_copyTarget == null || _copyTarget == master) { return; }
+
+            EditorApplication.delayCall += () => CopyModules_delay();
+        }
+
+        private void CopyModules_delay()
+        {
+            master.ClearComponents();
+
+            if (_copyTarget.broadcastSet.module != null)
+            {
+                master.SetBroadcast(_copyTarget.broadcastSet.module.GetType());
+                CopyComponentValues(_copyTarget.broadcastSet, master.broadcastSet);
+            }
+            foreach (var trigger in _copyTarget.triggerSet)
+            {
+                if (trigger.module != null)
+                {
+                    master.AddTrigger(trigger.module.GetType());
+                    CopyComponentValues(trigger, master.triggerSet[master.triggerSet.Count - 1]);
+                }
+            }
+            foreach (var action in _copyTarget.actionSet)
+            {
+                if (action.module != null)
+                {
+                    master.AddAction(action.module.GetType());
+                    CopyComponentValues(action, master.actionSet[master.actionSet.Count - 1]);
+                }
+            }
+        }
+
+        private void CopyComponentValues(T23_Master.ComponentSet baseComponent, T23_Master.ComponentSet targetComponent)
+        {
+            int groupID = targetComponent.module.groupID;
+            int priority = targetComponent.module.priority;
+            ComponentUtility.CopyComponent(baseComponent.module);
+            ComponentUtility.PasteComponentValues(targetComponent.module);
+            targetComponent.module.groupID = groupID;
+            targetComponent.module.priority = priority;
+            targetComponent.module.title = targetComponent.title = baseComponent.title;
         }
     }
 }

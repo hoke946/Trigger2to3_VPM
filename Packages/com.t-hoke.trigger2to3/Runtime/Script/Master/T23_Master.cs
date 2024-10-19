@@ -108,6 +108,28 @@ namespace Trigger2to3
             }
         }
 
+        [ContextMenu("Remove Component with Modules")]
+        public void RemoveComponent()
+        {
+            ClearComponents();
+            var go = gameObject;
+            UnityEditor.EditorApplication.delayCall += () =>
+            {
+                DestroyImmediate(this);
+            };
+        }
+
+        public void ClearComponents()
+        {
+            broadcastTitles.Clear();
+            triggerTitles.Clear();
+            actionTitles.Clear();
+
+            ChangeBroadcast();
+            ChangeTrigger();
+            ChangeAction();
+        }
+
         public void CheckComponents()
         {
             turn++;
