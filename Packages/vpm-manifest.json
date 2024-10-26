@@ -7,7 +7,7 @@
       "version": "0.1.29"
     },
     "com.t-hoke.trigger2to3": {
-      "version": "2.2.1"
+      "version": "2.2.2"
     }
   },
   "locked": {
@@ -26,7 +26,7 @@
       "dependencies": {}
     },
     "com.t-hoke.trigger2to3": {
-      "version": "2.2.1",
+      "version": "2.2.2",
       "dependencies": {}
     }
   }

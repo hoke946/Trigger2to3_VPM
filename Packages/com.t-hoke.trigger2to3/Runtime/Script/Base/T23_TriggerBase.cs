@@ -30,6 +30,7 @@ namespace Trigger2to3
 
         public void Trigger()
         {
+            if (!gameObject.activeInHierarchy) { return; }
             if (broadcast)
             {
                 broadcast.Trigger();

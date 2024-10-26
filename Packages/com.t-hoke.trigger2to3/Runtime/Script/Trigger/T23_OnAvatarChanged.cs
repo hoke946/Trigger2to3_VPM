@@ -8,7 +8,7 @@ namespace Trigger2to3
 {
     public class T23_OnAvatarChanged : T23_TriggerBase
     {
-        public bool localOnly = false;
+        public bool localOnly = true;
 
         public override void OnAvatarChanged(VRCPlayerApi player)
         {

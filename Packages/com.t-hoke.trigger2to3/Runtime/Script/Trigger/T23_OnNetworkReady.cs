@@ -15,26 +15,21 @@ namespace Trigger2to3
         private bool synced = false;
         private int firstSyncRequests = 0;
 
-        void Update()
+        protected override void PostStart()
+        {
+            if (Networking.IsOwner(gameObject))
+            {
+                syncReady = true;
+                Trigger();
+            }
+        }
+
+        public override void OnDeserialization()
         {
             if (!synced && syncReady)
             {
                 Trigger();
                 synced = true;
-                this.enabled = false;
-            }
-
-            ActivitySwitching();
-        }
-
-        private void ActivitySwitching()
-        {
-            if (!synced || firstSyncRequests > 0)
-            {
-                this.enabled = true;
-            }
-            else
-            {
                 this.enabled = false;
             }
         }

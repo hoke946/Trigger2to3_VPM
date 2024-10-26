@@ -8,7 +8,7 @@ namespace Trigger2to3
 {
     public class T23_OnAvatarEyeHeightChanged : T23_TriggerBase
     {
-        public bool localOnly = false;
+        public bool localOnly = true;
 
         public override void OnAvatarEyeHeightChanged(VRCPlayerApi player, float prevEyeHeightAsMeters)
         {
