@@ -228,7 +228,7 @@ namespace Trigger2to3
                     {
                         if (body.targetComponent == null)
                         {
-                            EditorGUILayout.HelpBox($"{(ValueType)body.valueType} で取得可能な UI コンポーネントがありません。", MessageType.Error);
+                            EditorGUILayout.HelpBox(T23_Localization.GetWord("PropertyBox_uinone", ((ValueType)body.valueType).ToString()), MessageType.Error);
                         }
                         else
                         {

@@ -12,7 +12,7 @@ namespace Trigger2to3
             var pickup = body_base.GetComponent<VRC_Pickup>();
             if (!pickup)
             {
-                EditorGUILayout.HelpBox("VRC_Pickup が必要です。", MessageType.Warning);
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("OnPickup_required"), MessageType.Warning);
             }
         }
     }

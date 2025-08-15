@@ -62,15 +62,15 @@ namespace Trigger2to3
         {
             if (master == null)
             {
-                EditorGUILayout.HelpBox("Master に組み込まれていません。 このままでも動作しますが、次のボタンで Master に組み込むことができます。", MessageType.Info);
-                if (GUILayout.Button("Join Master"))
-                {
-                    EditorApplication.delayCall += () =>
-                    {
-                        T23_Master.JoinMaster(body, gid, category);
-                        UdonSharpEditorUtility.CopyProxyToUdon(body);
-                    };
-                }
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("Module_disconnect"), MessageType.Error);
+                //if (GUILayout.Button("Join Master"))
+                //{
+                //    EditorApplication.delayCall += () =>
+                //    {
+                //        T23_Master.JoinMaster(body, gid, category);
+                //        UdonSharpEditorUtility.CopyProxyToUdon(body);
+                //    };
+                //}
             }
             return true;
         }

@@ -1,0 +1,13 @@
+Master_objectsync;VRC_ObjectSync が存在するため、Synchronize Method は Continuous に設定されています。;Because VRC_ObjectSync is attached, Synchronize Method is set to Continuous.
+Master_align;コンポーネントの整列に失敗しました。;Component alignment failed.
+Master_prefab;Prefab内のモジュールは操作を制限しています。Prefab編集モードで操作してください。;Modules in prefabs have limited operations. Please operate them in prefab editing mode.
+Broadcast_commonbuffer;シーンに CommonBuffer を追加してください。;Please add CommonBuffer to the scene.
+Module_disconnect;Masterとの接続が失われています。コンポーネントを削除し、Masterから再作成してください。;Connection with Master has been lost. Please delete the component and recreate it from the Master.
+Action_propertybox;PropertyBox の ValueType と型が一致しません。;Type mismatch with ValueType of PropertyBox.
+PropertyBox_uinone;Target Object は <f1> 型を取得できる UI コンポーネントを持っていません。;Target Object does not have a UI component that can retrieve an Int type.
+OnPickup_required;VRC_Pickup が必要です。;VRC_Pickup is required.
+OnPickup_autohold;VRC_Pickup の AutoHold を Yes にする必要があります。;AutoHold of VRC_Pickup must be set to Yes.
+SpawnObject_deprecated;SpawnObject は推奨されません。 VRC_ObjectPool の利用を検討してください。SpawnObjectPool で使用できます。;SpawnObject is deprecated. Please consider using VRC_ObjectPool. Can be used by SpawnObjectPool.
+ObjectPool_ownership;ObjectPool の Ownership は自動的に使用者に取得されます。;Ownership of ObjectPool is automatically took by the user.
+AudioParameters_triggeredplayer;Triggered Player で検出できるのは、Local の Trigger のみです。;Triggered Player can only detect Local Triggers.
+UIOn_noui;対象の UI コンポーネントが存在しません;The target UI component is not attached.

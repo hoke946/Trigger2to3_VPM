@@ -180,7 +180,7 @@ namespace Trigger2to3
                     }
                     if (unsuitable)
                     {
-                        EditorGUILayout.HelpBox("PropertyBox の ValueType が不適合です", MessageType.Error);
+                        EditorGUILayout.HelpBox(T23_Localization.GetWord("Action_propertybox"), MessageType.Error);
                     }
                 }
             }

@@ -52,7 +52,7 @@ namespace Trigger2to3
             }
             else
             {
-                EditorGUILayout.HelpBox("対象のUIコンポーネントが存在しません", MessageType.Error);
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("UIOn_noui"), MessageType.Error);
             }
         }
 

@@ -45,11 +45,19 @@ namespace Trigger2to3
 
             GUILayout.Space(10);
 
+            Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(master.gameObject);
+            if (prefab != null)
+            {
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("Master_prefab"), MessageType.Info);
+            }
+
             SerializedProperty broadcastProp = serializedObject.FindProperty("broadcastTitles");
             if (broadcastReorderableList == null)
             {
                 broadcastReorderableList = new ReorderableList(serializedObject, broadcastProp);
-                broadcastReorderableList.draggable = true;
+                broadcastReorderableList.draggable = prefab == null;
+                broadcastReorderableList.onCanAddCallback += (list) => { return prefab == null; };
+                broadcastReorderableList.onCanRemoveCallback += (list) => { return prefab == null; };
                 broadcastReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, "Broadcast");
                 broadcastReorderableList.drawElementCallback = (rect, index, isActive, isFocused) =>
                 {
@@ -79,7 +87,9 @@ namespace Trigger2to3
             if (triggerReorderableList == null)
             {
                 triggerReorderableList = new ReorderableList(serializedObject, triggerProp);
-                triggerReorderableList.draggable = true;
+                triggerReorderableList.draggable = prefab == null;
+                triggerReorderableList.onCanAddCallback += (list) => { return prefab == null; };
+                triggerReorderableList.onCanRemoveCallback += (list) => { return prefab == null; };
                 triggerReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, "Trigger");
                 triggerReorderableList.drawElementCallback = (rect, index, isActive, isFocused) =>
                 {
@@ -109,7 +119,9 @@ namespace Trigger2to3
             if (actionReorderableList == null)
             {
                 actionReorderableList = new ReorderableList(serializedObject, actionProp);
-                actionReorderableList.draggable = true;
+                actionReorderableList.draggable = prefab == null;
+                actionReorderableList.onCanAddCallback += (list) => { return prefab == null; };
+                actionReorderableList.onCanRemoveCallback += (list) => { return prefab == null; };
                 actionReorderableList.drawHeaderCallback = rect => EditorGUI.LabelField(rect, "Action");
                 actionReorderableList.drawElementCallback = (rect, index, isActive, isFocused) =>
                 {
@@ -148,7 +160,7 @@ namespace Trigger2to3
             }
             if (master.hasObjectSync)
             {
-                EditorGUILayout.HelpBox("VRC_ObjectSync が存在するため、Synchronize Method は Continuous に設定されています。", MessageType.Info);
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("Master_objectsync"), MessageType.Info);
             }
 
             EditorGUILayout.BeginHorizontal();
@@ -176,7 +188,6 @@ namespace Trigger2to3
 
             if (master.shouldMoveComponents)
             {
-                Object prefab = PrefabUtility.GetCorrespondingObjectFromSource(master.gameObject);
                 string msg = "";
                 if (prefab == null)
                 {
@@ -186,17 +197,17 @@ namespace Trigger2to3
                     }
                     else
                     {
-                        msg = "コンポーネントが正しく整列できません。";
+                        msg = "Master_align";
                     }
                 }
                 else
                 {
-                    msg = "コンポーネントがPrefab内にある場合、整列できません。";
+                    master.shouldMoveComponents = false;
                 }
                 if (msg != "")
                 {
                     EditorGUILayout.BeginHorizontal();
-                    EditorGUILayout.HelpBox(msg, MessageType.Warning);
+                    EditorGUILayout.HelpBox(T23_Localization.GetWord(msg), MessageType.Warning);
                     if (GUILayout.Button("Clear"))
                     {
                         master.shouldMoveComponents = false;

@@ -72,7 +72,7 @@ namespace Trigger2to3
                 {
                     if (body.commonBufferSearched)
                     {
-                        EditorGUILayout.HelpBox("CommonBufferを設定してください。", MessageType.Warning);
+                        EditorGUILayout.HelpBox(T23_Localization.GetWord("Broadcast_commonbuffer"), MessageType.Warning);
                     }
                     else
                     {

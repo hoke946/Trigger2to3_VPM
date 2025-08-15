@@ -8,7 +8,7 @@ namespace Trigger2to3
     {
         protected override void DrawFields()
         {
-            EditorGUILayout.HelpBox("SpawnObject は推奨されません。 VRC_ObjectPool の利用を検討してください。SpawnObjectPool で使用できます。", MessageType.Warning);
+            EditorGUILayout.HelpBox(T23_Localization.GetWord("SpawnObject_deprecated"), MessageType.Warning);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("prefab"));
             DrawRecieversList("locations");
         }

@@ -9,7 +9,7 @@ namespace Trigger2to3
         protected override void DrawFields()
         {
             EditorGUILayout.PropertyField(serializedObject.FindProperty("objectPool"));
-            EditorGUILayout.HelpBox("無条件でObject PoolのOwnershipを取得します。", MessageType.Info);
+            EditorGUILayout.HelpBox(T23_Localization.GetWord("ObjectPool_ownership"), MessageType.Info);
         }
     }
 }

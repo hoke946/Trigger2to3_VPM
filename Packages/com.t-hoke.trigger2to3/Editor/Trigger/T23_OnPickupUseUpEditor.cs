@@ -14,12 +14,12 @@ namespace Trigger2to3
             {
                 if (pickup.AutoHold != VRC_Pickup.AutoHoldMode.Yes)
                 {
-                    EditorGUILayout.HelpBox("VRC_Pickup の AutoHold を Yes にする必要があります。", MessageType.Warning);
+                    EditorGUILayout.HelpBox(T23_Localization.GetWord("OnPickup_autohold"), MessageType.Warning);
                 }
             }
             else
             {
-                EditorGUILayout.HelpBox("VRC_Pickup が必要です。", MessageType.Warning);
+                EditorGUILayout.HelpBox(T23_Localization.GetWord("OnPickup_required"), MessageType.Warning);
             }
         }
     }

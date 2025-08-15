@@ -77,9 +77,10 @@ namespace Trigger2to3
             int c = titles.IndexOf(currentTitle);
             if (c == -1) { return; }
 
+            var prefab = PrefabUtility.GetCorrespondingObjectFromSource(master.gameObject);
             EditorGUILayout.BeginHorizontal();
             GUILayout.Space(EditorGUIUtility.currentViewWidth - 100);
-            EditorGUI.BeginDisabledGroup(c == 0);
+            EditorGUI.BeginDisabledGroup(c == 0 || prefab != null);
             if (GUILayout.Button("↑"))
             {
                 string swapTitle = titles[c - 1];
@@ -89,7 +90,7 @@ namespace Trigger2to3
                 master.shouldMoveComponents = true;
             }
             EditorGUI.EndDisabledGroup();
-            EditorGUI.BeginDisabledGroup(c == titles.Count - 1);
+            EditorGUI.BeginDisabledGroup(c == titles.Count - 1 || prefab != null);
             if (GUILayout.Button("↓"))
             {
                 string swapTitle = titles[c + 1];
