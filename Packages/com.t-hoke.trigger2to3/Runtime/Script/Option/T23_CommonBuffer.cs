@@ -7,6 +7,7 @@ using VRC.Udon.Common.Interfaces;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("Trigger2to3/Trigger2to3 CommonBuffer (T23_CommonBuffer)")]
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class T23_CommonBuffer : UdonSharpBehaviour
     {

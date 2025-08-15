@@ -8,6 +8,7 @@ using VRC.Udon.Common;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("Trigger2to3/Trigger2to3 PropertyBox (T23_PropertyBox)")]
     public class T23_PropertyBox : UdonSharpBehaviour
     {
         public int valueType;

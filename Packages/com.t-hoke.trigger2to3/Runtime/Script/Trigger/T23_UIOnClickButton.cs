@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_UIOnClickButton : T23_TriggerBase
     {
         public Button button;

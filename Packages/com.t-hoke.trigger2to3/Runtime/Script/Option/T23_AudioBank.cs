@@ -6,6 +6,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("Trigger2to3/Trigger2to3 AudioBank (T23_AudioBank)")]
     [UdonBehaviourSyncMode(BehaviourSyncMode.None)]
     public class T23_AudioBank : UdonSharpBehaviour
     {

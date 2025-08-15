@@ -6,6 +6,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_OnParticleCollision : T23_TriggerBase
     {
         // 用途・処理方法不明

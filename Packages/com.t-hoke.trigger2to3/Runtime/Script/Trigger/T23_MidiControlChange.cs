@@ -8,6 +8,7 @@ using VRC.Udon.Common;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_MidiControlChange : T23_TriggerBase
     {
         public int channel;

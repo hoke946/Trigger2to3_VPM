@@ -5,6 +5,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("Trigger2to3/Trigger2to3 ConnectFromUdon (T23_ConnectFromUdon)")]
     public class T23_ConnectFromUdon : UdonSharpBehaviour
     {
         public GameObject target;

@@ -6,6 +6,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_ConditionalTrigger : T23_TriggerBase
     {
         public bool passive;

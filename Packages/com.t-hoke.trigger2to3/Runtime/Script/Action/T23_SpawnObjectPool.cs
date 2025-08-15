@@ -8,6 +8,7 @@ using VRC.SDK3.Components;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_SpawnObjectPool : T23_ActionBase
     {
         public VRCObjectPool objectPool;

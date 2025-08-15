@@ -8,6 +8,7 @@ using VRC.SDK3.Components;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_SetPropertyBox : T23_ActionBase
     {
         public T23_PropertyBox propertyBox;

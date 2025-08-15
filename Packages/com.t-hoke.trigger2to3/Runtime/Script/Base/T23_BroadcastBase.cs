@@ -5,6 +5,7 @@ using VRC.SDKBase;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_BroadcastBase : T23_ModuleBase
     {
         public override int category { get { return 0; } }

@@ -7,6 +7,7 @@ using VRC.Udon.Common.Interfaces;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_CallUdonMethod : T23_ActionBase
     {
         public UdonBehaviour udonBehaviour;

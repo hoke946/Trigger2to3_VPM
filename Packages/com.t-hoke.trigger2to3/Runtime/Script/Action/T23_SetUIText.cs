@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_SetUIText : T23_ActionBase
     {
         public Text[] recievers;

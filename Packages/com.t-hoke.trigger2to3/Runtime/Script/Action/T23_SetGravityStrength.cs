@@ -6,6 +6,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_SetGravityStrength : T23_ActionBase
     {
         public float gravityStrength = 1;

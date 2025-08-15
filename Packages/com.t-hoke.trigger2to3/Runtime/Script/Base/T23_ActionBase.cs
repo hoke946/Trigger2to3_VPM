@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_ActionBase : T23_ModuleBase
     {
         public override int category { get { return 2; } }

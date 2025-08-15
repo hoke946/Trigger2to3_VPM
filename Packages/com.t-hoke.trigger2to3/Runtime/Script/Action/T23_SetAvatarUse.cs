@@ -7,7 +7,7 @@ using VRC.SDK3.Components;
 
 namespace Trigger2to3
 {
-
+    [AddComponentMenu("")]
     public class T23_SetAvatarUse : T23_ActionBase
     {
         protected override void OnAction()

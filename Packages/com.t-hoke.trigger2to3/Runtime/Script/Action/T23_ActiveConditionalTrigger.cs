@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_ActiveConditionalTrigger : T23_ActionBase
     {
         public GameObject[] recievers;

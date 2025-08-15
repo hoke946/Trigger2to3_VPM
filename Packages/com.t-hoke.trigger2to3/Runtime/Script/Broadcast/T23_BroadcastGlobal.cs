@@ -8,6 +8,7 @@ using VRC.Udon.Common.Interfaces;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_BroadcastGlobal : T23_BroadcastBase
     {
         public override bool isGlobal { get { return true; } }

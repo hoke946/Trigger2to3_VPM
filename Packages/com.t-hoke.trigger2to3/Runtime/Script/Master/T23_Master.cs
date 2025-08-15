@@ -10,6 +10,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("Trigger2to3/Trigger2to3 Master (T23_Master)")]
     public class T23_Master : MonoBehaviour
     {
         [Serializable]

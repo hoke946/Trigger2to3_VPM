@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_UIOnValueChanged : T23_TriggerBase
     {
         public Object UIComponent;

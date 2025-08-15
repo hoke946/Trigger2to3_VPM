@@ -6,6 +6,7 @@ using VRC.Udon;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_BroadcastLocal : T23_BroadcastBase
     {
         public override bool isGlobal { get { return false; } }

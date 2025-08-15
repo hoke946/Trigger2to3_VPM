@@ -8,6 +8,7 @@ using VRC.SDK3.Components;
 
 namespace Trigger2to3
 {
+    [AddComponentMenu("")]
     public class T23_UseAudioBank : T23_ActionBase
     {
         public T23_AudioBank audioBank;
