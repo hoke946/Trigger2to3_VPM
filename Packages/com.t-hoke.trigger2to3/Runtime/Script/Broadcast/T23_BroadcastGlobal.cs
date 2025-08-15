@@ -1,6 +1,7 @@
 ﻿
 using UdonSharp;
 using UnityEngine;
+using VRC.SDK3.UdonNetworkCalling;
 using VRC.SDKBase;
 using VRC.Udon;
 using VRC.Udon.Common.Interfaces;
@@ -67,8 +68,8 @@ namespace Trigger2to3
                 return;
             }
 
-            SendCustomNetworkEvent(NetworkEventTarget.Owner, "OwnerProcess" + groupID.ToString());
-            SendCustomNetworkEvent(sendTarget, "RecieveNetworkFire" + groupID.ToString());
+            SendCustomNetworkEvent(NetworkEventTarget.Owner, "OwnerProcess", groupID);
+            SendCustomNetworkEvent(sendTarget, "RecieveNetworkFire", groupID);
 
             return;
         }
@@ -105,129 +106,18 @@ namespace Trigger2to3
             return true;
         }
 
-        /*
-        private T23_BroadcastGlobal GetCorrectBroadcast(int id)
+        [NetworkCallable]
+        public void RecieveNetworkFire(int gid)
         {
-            var bgs = GetComponents<T23_BroadcastGlobal>();
-            foreach (var bg in bgs)
-            {
-                if (bg.groupID == id)
-                {
-                    return bg;
-                }
-            }
-            return null;
-        }
-        */
-
-        public void RecieveNetworkFire0()
-        {
-            if (groupID == 0) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire1()
-        {
-            if (groupID == 1) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire2()
-        {
-            if (groupID == 2) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire3()
-        {
-            if (groupID == 3) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire4()
-        {
-            if (groupID == 4) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire5()
-        {
-            if (groupID == 5) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire6()
-        {
-            if (groupID == 6) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire7()
-        {
-            if (groupID == 7) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire8()
-        {
-            if (groupID == 8) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire9()
-        {
-            if (groupID == 9) { RecieveNetworkFire(); }
-        }
-
-        public void RecieveNetworkFire()
-        {
+            if (groupID != gid) { return; }
             if (Networking.IsOwner(gameObject)) { return; }
             Fire();
         }
 
-        public void OwnerProcess0()
+        [NetworkCallable]
+        public void OwnerProcess(int gid)
         {
-            if (groupID == 0) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess1()
-        {
-            if (groupID == 1) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess2()
-        {
-            if (groupID == 2) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess3()
-        {
-            if (groupID == 3) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess4()
-        {
-            if (groupID == 4) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess5()
-        {
-            if (groupID == 5) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess6()
-        {
-            if (groupID == 6) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess7()
-        {
-            if (groupID == 7) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess8()
-        {
-            if (groupID == 8) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess9()
-        {
-            if (groupID == 9) { OwnerProcess(); }
-        }
-
-        public void OwnerProcess()
-        {
+            if (groupID != gid) { return; }
             if (commonBuffer)
             {
                 Networking.SetOwner(Networking.LocalPlayer, commonBuffer.gameObject);

@@ -31,10 +31,6 @@ namespace Trigger2to3
             {
                 master.randomize = body.randomize;
             }
-            if (body.groupID > 9 || body.groupID < 0)
-            {
-                EditorGUILayout.HelpBox("BroadcastGlobal は Group #0 ～ #9 の間でしか使用できません。", MessageType.Error);
-            }
 
             EditorGUILayout.PropertyField(serializedObject.FindProperty("sendTarget"));
             serializedObject.FindProperty("useablePlayer").intValue = (int)(UsablePlayer)EditorGUILayout.EnumPopup("Usable Player", (UsablePlayer)body.useablePlayer);
