@@ -1,10 +1,16 @@
 # Trigger2to3
-VRChat SDK3でVRC_Triggerを使いたい人のための代替ツールです。  
+VRChat SDK2にはVRC_Triggerというコンポーネントがありました。当時、このコンポーネントによって、あらゆるギミックが操作されていました。  
+SDK3ではVRC_Triggerが廃止され、UDONによってギミックの自由度が格段に向上しましたが、  
+プログラミング経験のない人にとっては、逆に習得が難しいものになっています。  
+  
+このツールは、VRChat SDK3でVRC_Triggerを使いたい人のための代替ツールです。  
 VRC_Triggerの機能の大部分を取り込み、VRC_Triggerに近い使用感でワールドギミックを組み立てることができます。  
-VRC_TriggerのUIを次のような3つのUdonで表現して、実現します。  
+VRC_TriggerのUIを次のような3つのUDONで表現して、実現します。  
   
 ![Image](https://user-images.githubusercontent.com/44010396/190954057-3aeb1d43-2c79-48a5-b24f-86c1f2cc34ca.png)  
-
+  
+VRC_Triggerはすっかり過去のものとなりましたが、UDONが難しくて手を付けられない方のギミック作成ツールとしてお使いいただけます。  
+  
 ## ダウンロード
   
 [Releasesページ](https://github.com/hoke946/Trigger2to3_VPM/releases)から
